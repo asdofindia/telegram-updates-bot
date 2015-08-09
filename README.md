@@ -22,4 +22,5 @@ node index.js
 `/stop` to unsubscribe
 `/update message` to send `message` to all subscribers (admin only)
 
-
+## Demo ##
+You can subscribe to the original [@fossnewsbot](https://telegram.me/fossnewsbot)
