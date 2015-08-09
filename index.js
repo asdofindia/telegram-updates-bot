@@ -17,6 +17,13 @@ var unsubscribe = function (message) {
   fs.unlinkSync(filepath);
 };
 
+var messageAdmin = function (message) {
+  bot.sendMessage({
+    "chat_id": config.admin,
+    "text": message
+  });
+};
+
 var sendupdate = function (message) {
   if (message.from.id == config.admin) {
     message = message.text.slice(message.text.indexOf(' ') + 1);
@@ -28,6 +35,15 @@ var sendupdate = function (message) {
           "text": message
         });
       };
+      messageAdmin('finished sending');
+    });
+  }
+};
+
+var stats = function (message) {
+  if (message.from.id == config.admin){
+    fs.readdir('subscribers', function(err, subscribers) {
+      messageAdmin('Subscriber count is ' + subscribers.length.toString());
     });
   }
 };
@@ -46,6 +62,11 @@ bot.on('/stop', function (update) {
 bot.on('/update', function (update) {
   sendupdate(update.message);
   update.respond('Began sending that');
+});
+
+bot.on('/stats', function (update) {
+  stats(update.message);
+  console.log('sending stats');
 });
 
 // Anything without handlers goes here

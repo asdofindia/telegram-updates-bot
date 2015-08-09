@@ -15,12 +15,15 @@ mkdir subscribers
 ```
 
 ## Running ##
-node index.js
+`node index.js`
+
+Alternatively, consider installing pm2
 
 ## Commands on the bot ##
 `/start` to subscribe
 `/stop` to unsubscribe
 `/update message` to send `message` to all subscribers (admin only)
+`/stats` for subscriber count (admin only)
 
 ## Demo ##
 You can subscribe to the original [@fossnewsbot](https://telegram.me/fossnewsbot)
