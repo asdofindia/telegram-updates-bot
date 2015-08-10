@@ -8,7 +8,7 @@ var path = require('path');
 // create folder structure
 if (!fs.existsSync('subscribers')){
   console.log('creating the directory subscribers');
-  fs.makedirSync('subscribers');
+  fs.mkdirSync('subscribers');
 }
 
 var subscribe = function (id) {
