@@ -1,5 +1,6 @@
 {
   "token": "122222:aksjfkjkasjfkj-asfjlaksjf",
   "timeout": 3600,
-  "admin": 12345
+  "admin": 12345,
+  "username": "botusername"
 }

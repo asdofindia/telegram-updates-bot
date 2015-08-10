@@ -11,15 +11,15 @@ if (!fs.existsSync('subscribers')){
   fs.makedirSync('subscribers');
 }
 
-var subscribe = function (message) {
-  console.log('subscribe ' + message.from.id);
-  filepath = path.join('subscribers', message.from.id.toString());
+var subscribe = function (id) {
+  console.log('subscribe ' + id);
+  filepath = path.join('subscribers', id.toString());
   fs.closeSync(fs.openSync(filepath, 'w'));
 };
 
-var unsubscribe = function (message) {
-  console.log('unsubscribe ' + message.from.id);
-  filepath = path.join('subscribers', message.from.id.toString());
+var unsubscribe = function (id) {
+  console.log('unsubscribe ' + id);
+  filepath = path.join('subscribers', id.toString());
   fs.unlinkSync(filepath);
 };
 
@@ -31,7 +31,7 @@ var messageAdmin = function (message) {
 };
 
 var sendupdate = function (message) {
-  if (message.from.id == config.admin) {
+  if (message.from.id == config.admin && message.from.id == message.chat.id) {
     message = message.text.slice(message.text.indexOf(' ') + 1);
     console.log('update is ' + message);
     fs.readdir('subscribers', function (err, subscribers) {
@@ -56,18 +56,31 @@ var stats = function (message) {
 
 // User commands are handled with `on()`
 bot.on('/start', function (update) {
-  subscribe(update.message);
-  update.respond('Hello, ' + update.message.from.first_name + '! You are now subscribed to receive FOSS news. Use /stop to unsubscribe.');
+  if (message.from.id == message.chat.id){
+    subscribe(update.message.from.id);
+    update.respond('Hello, ' + update.message.from.first_name + '! You are now subscribed to receive updates from me. Use /stop to unsubscribe.');
+  }
 });
 
 bot.on('/stop', function (update) {
-  unsubscribe(update.message);
-  update.respond('You have been unsubscribed. If you want to subscribe again, just send /start');
+  if (message.from.id == message.chat.id) {
+    unsubscribe(update.message.from.id);
+    update.respond('You have been unsubscribed. If you want to subscribe again, just send /start');
+  }
+});
+
+bot.on('/start@' + config.username, function (update) {
+  subscribe(update.message.chat.id);
+  update.respond('I will send updates to this group too. Anyone can send /stop@' + config.username + ' to make me stop');
+});
+
+bot.on('/stop@' + config.username, function (update){
+  unsubscribe(update.message.chat.id);
+  update.respond('That\'s it. I\'m done. Send /start@' + config.username + ' if you feel like you need me again.');
 });
 
 bot.on('/update', function (update) {
   sendupdate(update.message);
-  update.respond('Began sending that');
 });
 
 bot.on('/stats', function (update) {

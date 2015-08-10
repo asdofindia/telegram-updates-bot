@@ -10,7 +10,7 @@ npm install
 mv config.sample.json config.json
 vim config.json
 # put [bot token and timeout](https://github.com/dar5hak/bub#set) in config.json
-# also set the admin id
+# also set the admin id and the username of the bot
 ```
 
 ## Running ##
