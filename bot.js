@@ -56,14 +56,14 @@ var stats = function (message) {
 
 // User commands are handled with `on()`
 bot.on('/start', function (update) {
-  if (message.from.id == message.chat.id){
+  if (update.message.from.id == update.message.chat.id){
     subscribe(update.message.from.id);
     update.respond('Hello, ' + update.message.from.first_name + '! You are now subscribed to receive updates from me. Use /stop to unsubscribe.');
   }
 });
 
 bot.on('/stop', function (update) {
-  if (message.from.id == message.chat.id) {
+  if (update.message.from.id == update.message.chat.id) {
     unsubscribe(update.message.from.id);
     update.respond('You have been unsubscribed. If you want to subscribe again, just send /start');
   }
