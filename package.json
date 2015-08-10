@@ -1,14 +1,14 @@
 {
-  "name": "fossnewsbot",
+  "name": "telegram-updates-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asdofindia/telegram-fossnewsbot.git"
+    "url": "git+https://github.com/asdofindia/telegram-updates-bot.git"
   },
   "keywords": [
     "telegram",
@@ -17,9 +17,9 @@
   "author": "Akshay S Dinesh <asdofindia@gmail.com>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/asdofindia/telegram-fossnewsbot/issues"
+    "url": "https://github.com/asdofindia/telegram-updates-bot/issues"
   },
-  "homepage": "https://github.com/asdofindia/telegram-fossnewsbot#readme",
+  "homepage": "https://github.com/asdofindia/telegram-updates-bot#readme",
   "dependencies": {
     "bub": "^1.1.1"
   }
