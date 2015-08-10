@@ -5,6 +5,12 @@ var bot = new Bub(config);
 var fs = require('fs');
 var path = require('path');
 
+// create folder structure
+if (!fs.existsSync('subscribers')){
+  console.log('creating the directory subscribers');
+  fs.makedirSync('subscribers');
+}
+
 var subscribe = function (message) {
   console.log('subscribe ' + message.from.id);
   filepath = path.join('subscribers', message.from.id.toString());

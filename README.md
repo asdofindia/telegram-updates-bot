@@ -6,12 +6,11 @@ This bot, built over Telegram API is designed to allow people to subscribe to up
 ```bash
 git clone https://github.com/asdofindia/telegram-updates-bot.git
 cd telegram-updates-bot
+npm install
 mv config.sample.json config.json
 vim config.json
 # put [bot token and timeout](https://github.com/dar5hak/bub#set) in config.json
 # also set the admin id
-npm install
-mkdir subscribers
 ```
 
 ## Running ##
