@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/asdofindia/telegram-updates-bot#readme",
   "dependencies": {
-    "bub": "^1.1.1"
+    "bub": "^1.1.1",
+    "sleep": "^3.0.0"
   }
 }

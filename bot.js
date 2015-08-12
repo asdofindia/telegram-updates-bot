@@ -5,6 +5,8 @@ var bot = new Bub(config);
 var fs = require('fs');
 var path = require('path');
 
+var sleep = require('sleep');
+
 // create folder structure
 if (!fs.existsSync('subscribers')){
   console.log('creating the directory subscribers');
@@ -35,11 +37,16 @@ var sendupdate = function (message) {
     message = message.text.slice(message.text.indexOf(' ') + 1);
     console.log('update is ' + message);
     fs.readdir('subscribers', function (err, subscribers) {
-      for (var i = 0; i < subscribers.length; i++) {
+      var maxpersec = 30;
+      for (var i = 0, sentnow = 0; i < subscribers.length; i++, sentnow++) {
         bot.sendMessage({
           "chat_id": subscribers[i],
           "text": message
         });
+        if (sentnow == maxpersec) {
+          sleep.sleep(1);
+          sentnow = 0;
+        }
       };
       messageAdmin('finished sending');
     });
